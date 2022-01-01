@@ -20,7 +20,7 @@ class TextRecognitionWidget extends StatefulWidget {
 
 class _TextRecognitionWidgetState extends State<TextRecognitionWidget> {
   String text = '';
-  File image = File('');
+  File? image; //= File('');
 
   @override
   Widget build(BuildContext context) => Expanded(
@@ -44,7 +44,7 @@ class _TextRecognitionWidgetState extends State<TextRecognitionWidget> {
 
   Widget buildImage() => Container(
         child: image != null
-            ? Image.file(image)
+            ? Image.file(image!)
             : Icon(Icons.photo, size: 80, color: Colors.black),
       );
 
@@ -69,12 +69,11 @@ class _TextRecognitionWidgetState extends State<TextRecognitionWidget> {
 
     final text = await FirebaseMLApi.recogniseText(image);
     setText(text);
-
     Navigator.of(context).pop();
   }
 
   void clear() {
-    setImage(File(''));
+    setImage(null);
     setText('');
   }
 
@@ -84,7 +83,7 @@ class _TextRecognitionWidgetState extends State<TextRecognitionWidget> {
     }
   }
 
-  void setImage(File newImage) {
+  void setImage(File? newImage) {
     setState(() {
       image = newImage;
     });

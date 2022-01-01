@@ -23,7 +23,7 @@ class ControlsWidget extends StatelessWidget {
           const SizedBox(width: 12),
           RaisedButton(
             onPressed: onClickedScanText,
-            child: Text('Scan For Text'),
+            child: Text('Scan for Text'),
           ),
           const SizedBox(width: 12),
           RaisedButton(

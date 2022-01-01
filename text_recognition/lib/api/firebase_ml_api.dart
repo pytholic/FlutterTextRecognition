@@ -4,7 +4,7 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 
 class FirebaseMLApi {
-  static Future<String> recogniseText(File imageFile) async {
+  static Future<String> recogniseText(File? imageFile) async {
     if (imageFile == null) {
       return 'No image selected';
     } else {
@@ -28,14 +28,18 @@ class FirebaseMLApi {
 
     for (TextBlock block in visionText.blocks) {
       for (TextLine line in block.lines) {
+        //var tmp_line = '';
         //for (TextElement word in line.elements) {
-        var text_tmp = '';
-        for (TextElement word in line.elements) {
-          text_tmp += word.text;
-        }
-        text = text + text_tmp + '\n';
+        //tmp_line += word.text + ' ';
+        // var text_tmp = '';
+        // for (TextElement word in line.elements) {
+        //   text_tmp += word.text;
         //}
-        //text = text + '\n';
+        text = text + line.text + '\n';
+        //text = text + tmp_line + '\n';
+        //}
+        //var tmp = line.toString();
+        //text = text + line.text + '\n';
       }
     }
 
