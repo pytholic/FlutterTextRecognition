@@ -23,23 +23,32 @@ class FirebaseMLApi {
     }
   }
 
+  // Function to excludes prices
+  static bool isNumeric(String string) {
+    final numericRegex = RegExp(r'^-?(([0-9,]*)|(([0-9,]*)\.([0-9]*)))$');
+
+    return numericRegex.hasMatch(string);
+  }
+
   static extractText(VisionText visionText) {
     String text = '';
 
     for (TextBlock block in visionText.blocks) {
       for (TextLine line in block.lines) {
-        //var tmp_line = '';
-        //for (TextElement word in line.elements) {
-        //tmp_line += word.text + ' ';
-        // var text_tmp = '';
-        // for (TextElement word in line.elements) {
-        //   text_tmp += word.text;
-        //}
-        text = text + line.text + '\n';
-        //text = text + tmp_line + '\n';
-        //}
-        //var tmp = line.toString();
-        //text = text + line.text + '\n';
+        String tmp = '';
+        for (TextElement word in line.elements) {
+          // Excluding prices (digits)
+          if (isNumeric(word.text)) {
+            tmp = '';
+          } else {
+            tmp += word.text;
+          }
+        }
+        if (tmp == '') {
+          text = text;
+        } else {
+          text = text + tmp + '\n';
+        }
       }
     }
 
