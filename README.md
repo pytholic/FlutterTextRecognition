@@ -69,5 +69,5 @@ Future pickImage() async {
 
 ## Helpful Links
 * Johannes Milke
-    * [Youtube tutorial[(https://www.youtube.com/watch?v=TNKtGOZRA5o)
+    * [Youtube tutorial](https://www.youtube.com/watch?v=TNKtGOZRA5o)
     * [Git repo](https://github.com/JohannesMilke/firebase_ml_text_recognition)
